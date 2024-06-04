@@ -2,7 +2,7 @@ import React from 'react'
 import './ExploreProducts.css'
 import { product_list } from '../../assets/assets'
 
-const ExploreProducts = () => {
+const ExploreProducts = ({category,setCategory}) => {
   return (
     <div className='explore-products' id='explore-products'>
         <h1>Explore our products</h1>
@@ -10,8 +10,8 @@ const ExploreProducts = () => {
         <div className='explore-products-list' >
             {product_list.map((item, index)=>{
                 return (
-                    <div key={index} className='explore-products-list-item'> 
-                    <img src={item.product_image} alt='products' />
+                    <div onClick={()=>setCategory(prev=>prev===item.product_name?"All":item.product_name)} key={index} className='explore-products-list-item'> 
+                    <img className={category===item.product_name?"active":""} src={item.product_image} alt='products' />
                     <p> {item.product_name}</p>
                     </div>
                 )

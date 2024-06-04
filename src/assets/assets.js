@@ -15,6 +15,17 @@ import product7 from './eyecare.jpg'
 import product8 from './heartburn.jpg'
 
 
+import product_type1 from './PT_cetrizine.png'
+import product_type2 from './PT_folicacid.jpeg'
+import product_type3 from './PT_ashwagandha.jpeg'
+import product_type4 from './PT_paracetamol.jpeg'
+import product_type5 from './PT_plasters.png'
+import product_type6 from './PT_metformin.jpeg'
+import product_type7 from './PT_eyedrops.jpeg'
+import product_type8 from './PT_gaviscon.jpeg'
+
+
+
 export const assets = {
     Pharmafleet_logo,
     search_icon,
@@ -34,12 +45,12 @@ export const product_list = [
     },
 
     {
-        product_name: "supplements",
+        product_name: "Supplements",
         product_image: product3
     },
 
     {
-        product_name: "pain",
+        product_name: "Pain",
         product_image: product4
     },
     
@@ -63,4 +74,79 @@ export const product_list = [
         product_image: product8
     },
   
+]
+
+export const product_type = [
+    {
+        _id: "1",
+        name: "Cetrizine",
+        image: product_type1,
+        price: 10,
+        description: "hayfever tablet",
+        category: "Allergy and Havfever"
+    },
+
+    {
+        _id: "2",
+        name: "Folic Acid",
+        image: product_type2,
+        price: 10,
+        description: "vitamins for you",
+        category: "Vitamins"
+    },
+
+    {
+        _id: "3",
+        name: "Ashwagandha ",
+        image: product_type3,
+        price: 10,
+        description: "supplement your dietary needs",
+        category: "Supplements"
+    },
+
+    {
+        _id: "4",
+        name: "Paracetamol",
+        image: product_type4,
+        price: 10,
+        description: "Pain relief",
+        category: "Pain"
+    },
+
+    {
+        _id: "5",
+        name: "Plasters",
+        image: product_type5,
+        price: 10,
+        description: "First aid product",
+        category: "First Aid"
+    },
+
+    {
+        _id: "6",
+        name: "Metformin",
+        image: product_type6,
+        price: 10,
+        description: "The proposed wonder drug for diabetic patients",
+        category: "Diabetes"
+    },
+
+    {
+        _id: "7",
+        name: "Eyedrops",
+        image: product_type7,
+        price: 10,
+        description: "Eyedrops for those teary eyes",
+        category: "Eyecare"
+    },
+
+    {
+        _id: "8",
+        name: "Gaviscon",
+        image: product_type8,
+        price: 10,
+        description: "Reduce those tummyaches",
+        category: "Heartburn and Indigestion"
+    }
+
 ]

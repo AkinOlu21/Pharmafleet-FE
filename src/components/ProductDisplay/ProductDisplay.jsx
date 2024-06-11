@@ -13,7 +13,11 @@ const {product_type} = useContext(PharmaContext)
         <h2>Produts near you</h2>
         <div className="prod-display-list">
             {product_type.map((item,index)=>{
+              if (category==="All" || category===item.category) {
+              
                 return <ProductItems key={index} id={item._id} name={item.name} description={item.description} price={item.price} image={item.image} />
+
+              }
             })}
         </div>
 

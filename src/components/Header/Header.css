@@ -41,3 +41,24 @@ font-size: max(1vw,13px);
 border-radius: 50px;
 cursor: pointer ;
 }
+
+@media (max-width:1050px){
+   
+    .h-cont{
+        max-width: 45% ;
+    }
+}
+
+@media (max-width:750px){
+    
+    .h-cont{
+        max-width: 65% ;
+    }
+    .h-cont p{
+        display: none;
+    }
+    .h-cont button{
+        padding: 2vw 4vw;
+    }
+}
+

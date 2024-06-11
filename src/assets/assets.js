@@ -9,6 +9,8 @@ import insta_icon from './instaicon.svg'
 import X_icon from './Xicon.svg'
 
 import header_bg from './Delivery header image.webp'
+import playstore from './PlayStore.png'
+import appstore from './Appstore2.png'
 
 import product1 from './hayfever.jpg'
 import product2 from './vitamins.jpeg'
@@ -40,7 +42,9 @@ export const assets = {
     facebook_icon,
     insta_icon,
     X_icon,
-    header_bg
+    header_bg,
+    playstore,
+    appstore
 }
 
 export const product_list = [

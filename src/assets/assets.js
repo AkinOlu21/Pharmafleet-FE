@@ -4,6 +4,9 @@ import search_icon from './search.svg'
 import basket_icon from './basket.svg'
 import add_icon from './addicon.svg'
 import remove_icon from './removeicon.svg'
+import facebook_icon from './facebookicon.svg'
+import insta_icon from './instaicon.svg'
+import X_icon from './Xicon.svg'
 
 import header_bg from './Delivery header image.webp'
 
@@ -34,6 +37,9 @@ export const assets = {
     basket_icon,
     add_icon,
     remove_icon,
+    facebook_icon,
+    insta_icon,
+    X_icon,
     header_bg
 }
 

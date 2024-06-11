@@ -7,6 +7,7 @@ import remove_icon from './removeicon.svg'
 import facebook_icon from './facebookicon.svg'
 import insta_icon from './instaicon.svg'
 import X_icon from './Xicon.svg'
+import cross_icon from './Crossicon.svg'
 
 import header_bg from './Delivery header image.webp'
 import playstore from './PlayStore.png'
@@ -42,6 +43,7 @@ export const assets = {
     facebook_icon,
     insta_icon,
     X_icon,
+    cross_icon,
     header_bg,
     playstore,
     appstore

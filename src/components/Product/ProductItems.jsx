@@ -2,16 +2,17 @@ import React, { useContext} from 'react'
 import './ProductItems.css'
 import { assets } from '../../assets/assets'
 import { PharmaContext } from '../../Context/PharmaContext'
+import axios from 'axios'
 
 const ProductItems = ({id, name, price, description, image}) => {
 
-const{cartItems,addToCart,removeFromCart} = useContext(PharmaContext)
+const{cartItems,addToCart,removeFromCart,url} = useContext(PharmaContext)
 
   return (
     <div className='prod-item'>
 
         <div className="prod-item-img-container">
-            <img className='prod-item-image' src={image} alt="" />
+            <img className='prod-item-image' src={url+"/images/"+image} alt="" />
             {!cartItems[id]
             ?<img className='add' onClick={()=>addToCart(id)} src={assets.add_icon}/>
             :<div className='prod-item-counter' >

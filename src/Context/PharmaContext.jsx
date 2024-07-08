@@ -1,12 +1,12 @@
 import { createContext, useEffect, useState } from "react";
-import { product_type } from "../assets/assets";
 export const PharmaContext = createContext(null) //Creating context api
-
+import axios from "axios";
 const PharmaContextProvider = (props) => {
 
     const [cartItems,setCartItems] = useState({});
     const [token,setToken] = useState("");
-
+    const url = "http://localhost:4000";
+    const [product_type,setProductType] = useState([])
 
 
 
@@ -42,11 +42,23 @@ const PharmaContextProvider = (props) => {
         return totalAmount
    }
 
+
+    const fetchProductType = async () => {
+        const response = await axios.get(url+"/api/product/list");
+        setProductType(response.data.data)
+    }
+
    //preventing logout from happening when refresh button is hit
 useEffect(()=>{
-    if (localStorage.getItem("token")){
+    async function loadData() {
+        await fetchProductType();
+         if (localStorage.getItem("token"))
+            {
         setToken(localStorage.getItem("token"));
     }
+    }
+   
+    loadData();
 },[])
 
 const contextValue ={ //variable
@@ -58,7 +70,8 @@ const contextValue ={ //variable
     removeFromCart,
     getTotalCartAmount,
     token,
-    setToken
+    setToken,
+    url
 }
 
 return (

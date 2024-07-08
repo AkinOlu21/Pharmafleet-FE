@@ -3,11 +3,10 @@ import './LoginPopup.css'
 import { assets } from '../../assets/assets'
 import { PharmaContext } from '../../Context/PharmaContext'
 import axios from "axios"
-import {url} from "../../apiconfig"
 
 const LoginPopup = ({setShowLogin}) => {
 
-    const {setToken} = useContext(PharmaContext)
+    const {url,setToken} = useContext(PharmaContext)
 
 
     const [currState,setCurrState] = useState("Login")

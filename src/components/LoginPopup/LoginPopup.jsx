@@ -1,26 +1,68 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './LoginPopup.css'
 import { assets } from '../../assets/assets'
+import { PharmaContext } from '../../Context/PharmaContext'
+import axios from "axios"
+import {url} from "../../apiconfig"
 
 const LoginPopup = ({setShowLogin}) => {
 
+    const {setToken} = useContext(PharmaContext)
+
+
     const [currState,setCurrState] = useState("Login")
+
+    const [data,setData] = useState({
+        name:"",
+        email:"",
+        password:""
+    })
+
+const onChangeHandler = (event) =>{
+    const name = event.target.name
+    const value = event.target.value
+    setData(data=>({...data,[name]:value}))
+}
+
+
+    const onLogin = async (event) =>{
+        event.preventDefault()
+        let newURL = url;
+        if(currState==="Login"){
+            newURL += "/api/user/login"
+        }
+        else{
+            newURL += "/api/user/register"
+        }
+        const response  = await axios.post(newURL,data);
+        if (response.data.success) {
+            setToken(response.data.token);
+            localStorage.setItem("token",response.data.token)
+            setShowLogin(false)
+        } else{
+            alert(response.data.message)
+        }
+
+    }
+
+    useEffect(()=>{
+        console.log(data);
+    },[data])
 
   return (
     <div className='Login-Popup'>
-        <form className='login-pop-container'>
+        <form onSubmit={onLogin} className='login-pop-container'>
             <div className="login-pop-title">
                 <h2>{currState}</h2>
                 <img  onClick={()=>setShowLogin(false)} src={assets.cross_icon} alt="" />
             </div>
             <div className="login-pop-inputs">
-                {currState==="Login"?<></>:<input type="text" placeholder='Your name'  required />}
-                {currState==="Login"?<></>:<input type="text" placeholder='Your name'  required />}
+                {currState==="Login"?<></>:<input name='name' onChange={onChangeHandler} value={data.name} type="text" placeholder='Your name'  required />}
 
-                <input type="email" placeholder='Your Email' required /> 
-                <input type="password" placeholder='Your Password' required />       
+                <input name='email'onChange={onChangeHandler} value={data.email} type="email" placeholder='Your Email' required /> 
+                <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder='Your Password' required />       
                 </div>
-                <button>{currState==="Sign Up"?"Create accoount":"Login"}</button>
+                <button type='submit' >{currState==="Sign Up"?"Create accoount":"Login"}</button>
                 <div className="login-pop-condition">
                     <input type="checkbox" required />
                     <p>By continuing you agree to the terms and of use and privacy Policy.</p>

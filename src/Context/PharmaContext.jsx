@@ -1,11 +1,14 @@
 import { createContext, useEffect, useState } from "react";
 import { product_type } from "../assets/assets";
-
 export const PharmaContext = createContext(null) //Creating context api
 
 const PharmaContextProvider = (props) => {
 
     const [cartItems,setCartItems] = useState({});
+    const [token,setToken] = useState("");
+
+
+
 
 
     const addToCart = (itemID) => {
@@ -46,7 +49,9 @@ const contextValue ={ //variable
     setCartItems,
     addToCart,
     removeFromCart,
-    getTotalCartAmount
+    getTotalCartAmount,
+    token,
+    setToken
 }
 
 return (

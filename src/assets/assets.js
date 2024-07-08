@@ -8,6 +8,9 @@ import facebook_icon from './facebookicon.svg'
 import insta_icon from './instaicon.svg'
 import X_icon from './Xicon.svg'
 import cross_icon from './Crossicon.svg'
+import profile from './profile.svg'
+import orderbag from './OrderBag.svg'
+import logout from './Logout.svg'
 
 import header_bg from './Delivery header image.webp'
 import playstore from './PlayStore.png'
@@ -46,7 +49,10 @@ export const assets = {
     cross_icon,
     header_bg,
     playstore,
-    appstore
+    appstore,
+    profile,
+    orderbag,
+    logout
 }
 
 export const product_list = [

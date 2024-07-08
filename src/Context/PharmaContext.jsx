@@ -42,6 +42,13 @@ const PharmaContextProvider = (props) => {
         return totalAmount
    }
 
+   //preventing logout from happening when refresh button is hit
+useEffect(()=>{
+    if (localStorage.getItem("token")){
+        setToken(localStorage.getItem("token"));
+    }
+},[])
+
 const contextValue ={ //variable
 
     product_type,

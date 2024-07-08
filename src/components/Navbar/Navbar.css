@@ -100,6 +100,42 @@ font-size: 18px;
     }
 }
 
+.nav-profile{
+    position: relative;
+}
+
+.nav-profile-dropdown{
+    position: absolute;
+    display: none;
+    right: 0;
+    z-index: 1;
+}
+
+.nav-profile:hover .nav-profile-dropdown{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    padding: 12px 25px;
+    border-radius: 4px;
+    border: 1px solid rgb(209, 47, 18);
+    list-style: none;
+}
+
+.nav-profile-dropdown li{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.nav-profile-dropdown img{
+    width: 21px;
+}
+
+.nav-profile-dropdown li:hover{
+    color: rgb(10, 216, 10);
+}
 
 @media (max-width:750px){
    

@@ -11,42 +11,58 @@ const PharmaContextProvider = (props) => {
 
 
 
-    const addToCart = (itemID) => {
-        if (!cartItems[itemID]) {
-            setCartItems((prev)=>({...prev,[itemID]:1}))
+    const addToCart = async (itemId) => {
+        if (!cartItems[itemId]) {
+            setCartItems((prev)=>({...prev,[itemId]:1}))
         }
         else {
-            setCartItems((prev)=>({...prev,[itemID]:prev[itemID]+1}))
+            setCartItems((prev)=>({...prev,[itemId]:prev[itemId]+1}))
+        }
+        if (token) {
+            await axios.post(url+"/api/cart/add",{itemId},{headers:{token}})
+            
         }
     }
 
 
 
 
-    const removeFromCart = (itemID) => {
-        setCartItems((prev)=>({...prev,[itemID]:prev[itemID]-1}))
+    const removeFromCart = async (itemId) => {
+        setCartItems((prev)=>({...prev,[itemId]:prev[itemId]-1}))
+        if (token) {
+            await axios.post(url+"/api/cart/remove",{itemId},{headers:{token}});
+        }
     }
 
 
    const getTotalCartAmount = () =>{
-    let totalAmount = 0
+    let totalAmount = 0;
     for(const item in cartItems)
         {
             if (cartItems[item]>0){
 
-                let itemInfo = product_type.find((product)=>product._id === item)
-            totalAmount += itemInfo.price* cartItems[item]
+                let itemInfo = product_type.find((product)=>product._id === item);
+                totalAmount += itemInfo.price * cartItems[item];
 
             }
         }
-        return totalAmount
+        return totalAmount;
    }
+   
+   
+   
 
 
     const fetchProductType = async () => {
         const response = await axios.get(url+"/api/product/list");
         setProductType(response.data.data)
     }
+
+    const loadCartData = async (token) => {
+        const response = await axios.post(url+"/api/cart/get",{},{headers:{token}});
+        setCartItems(response.data.cartData);
+    }
+
 
    //preventing logout from happening when refresh button is hit
 useEffect(()=>{
@@ -55,6 +71,7 @@ useEffect(()=>{
          if (localStorage.getItem("token"))
             {
         setToken(localStorage.getItem("token"));
+        await loadCartData(localStorage.getItem("token"));
     }
     }
    

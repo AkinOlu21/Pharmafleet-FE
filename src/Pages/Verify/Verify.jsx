@@ -9,18 +9,19 @@ const Verify = () => {
     const success = searchParams.get("success")
     const orderId = searchParams.get("orderId")
     const {url} = useContext(PharmaContext)
-    const navigate = useNavigate
+    const navigate = useNavigate();
 
     const verifyPayment = async () =>{
         const response = await axios.post(url+"/api/order/verify",{orderId,success});
         if (response.data.success){
         navigate("/myorders");
-        } else{
+        } 
+        else{
             navigate("/")
         }
     }
 
-    useEffect (()=>{
+    useEffect(()=>{
         verifyPayment();
     },[])
     

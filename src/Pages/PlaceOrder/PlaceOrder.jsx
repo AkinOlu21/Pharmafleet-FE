@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import './PlaceOrder.css'
 import { PharmaContext } from '../../Context/PharmaContext'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const PlaceOrder = () => {
 
@@ -60,10 +61,22 @@ const [data,setData] = useState({
     else {
       alert("an error occured")
     }
-    
-    
 
   }
+
+   const navigate = useNavigate();
+   
+    useEffect(()=>{
+      if(!token) {
+      navigate('/cart')
+      }
+         else if (getTotalCartAmount()===0){
+           navigate('/cart')
+       }
+     },[token])
+
+
+  
 
   return (
     <form onSubmit={placeOrder} className='place-order'>

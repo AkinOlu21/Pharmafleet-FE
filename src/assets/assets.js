@@ -11,6 +11,7 @@ import cross_icon from './Crossicon.svg'
 import profile from './profile.svg'
 import orderbag from './OrderBag.svg'
 import logout from './Logout.svg'
+import parcel_icon from './Parcel_icon.svg'
 
 import header_bg from './Delivery header image.webp'
 import playstore from './PlayStore.png'
@@ -42,6 +43,7 @@ export const assets = {
     search_icon,
     basket_icon,
     add_icon,
+    parcel_icon,
     remove_icon,
     facebook_icon,
     insta_icon,
@@ -52,7 +54,8 @@ export const assets = {
     appstore,
     profile,
     orderbag,
-    logout
+    logout,
+    
 }
 
 export const product_list = [

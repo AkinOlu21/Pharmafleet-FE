@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './LoginPopup.css'
 import { assets } from '../../assets/assets'
 import { PharmaContext } from '../../Context/PharmaContext'
@@ -8,6 +9,7 @@ const LoginPopup = ({setShowLogin}) => {
 
     const {url,setToken} = useContext(PharmaContext)
 
+    const navigate = useNavigate();
 
     const [currState,setCurrState] = useState("Login")
 
@@ -40,6 +42,27 @@ const onChangeHandler = (event) =>{
             localStorage.setItem("token",response.data.token);
             localStorage.setItem("User Role",response.data.role);
             setShowLogin(false)
+
+            switch (response.data.role) {
+                case 'customer':
+                    navigate('/');
+                    break;
+
+                case 'GP':
+                    navigate('/doctor');
+                    break;
+
+                case 'Driver':
+                    navigate('/driver');
+                    break;
+            
+                default:
+                    console.log("Role doesn't exist or is a", response.data.role);
+                    navigate('/');
+                    break;
+            }
+
+             
         } else{
             alert(response.data.message)
         }

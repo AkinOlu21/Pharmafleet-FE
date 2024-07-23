@@ -49,6 +49,18 @@
     background-color: rgba(153, 206, 153, 0.541);
 }
 
+.login-pop-inputs select{
+    background-color: rgba(153, 206, 153, 0.541);
+    border: 1px solid #c9c9c9 ;
+    color: tomato;
+    font-weight: 600;
+    font-size: 15px ;
+    border-radius: 4px;
+    width: 150px;
+    padding: 1px;
+    outline: none;
+}
+
 .login-pop-container button{
     border: none;
     padding: 10px;

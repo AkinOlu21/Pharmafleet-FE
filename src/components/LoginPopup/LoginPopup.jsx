@@ -14,7 +14,8 @@ const LoginPopup = ({setShowLogin}) => {
     const [data,setData] = useState({
         name:"",
         email:"",
-        password:""
+        password:"",
+        role:"customer"
     })
 
 const onChangeHandler = (event) =>{
@@ -36,7 +37,8 @@ const onChangeHandler = (event) =>{
         const response  = await axios.post(newURL,data);
         if (response.data.success) {
             setToken(response.data.token);
-            localStorage.setItem("token",response.data.token)
+            localStorage.setItem("token",response.data.token);
+            localStorage.setItem("User Role",response.data.role);
             setShowLogin(false)
         } else{
             alert(response.data.message)
@@ -59,9 +61,16 @@ const onChangeHandler = (event) =>{
                 {currState==="Login"?<></>:<input name='name' onChange={onChangeHandler} value={data.name} type="text" placeholder='Your name'  required />}
 
                 <input name='email'onChange={onChangeHandler} value={data.email} type="email" placeholder='Your Email' required /> 
-                <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder='Your Password' required />       
+                <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder='Your Password' required />     
+                {currState==='Sign Up' && (
+                    <select name='role' onChange={onChangeHandler} value={data.role} required>
+                        <option value="customer">Customer</option>
+                        <option value="GP">GP</option>
+                        <option value="Driver">Driver</option>
+                    Who are you?</select>
+                )}  
                 </div>
-                <button type='submit' >{currState==="Sign Up"?"Create accoount":"Login"}</button>
+                <button type='submit' >{currState==="Sign Up"?"Create account":"Login"}</button>
                 <div className="login-pop-condition">
                     <input type="checkbox" required />
                     <p>By continuing you agree to the terms and of use and privacy Policy.</p>

@@ -1,14 +1,43 @@
-<link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
+import React, { useEffect, useRef } from 'react';
+import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
-import React, { useEffect, useState } from 'react'
-import './Map.css'
-import mapboxgl from 'mapbox-gl'
-import axios from 'axios'
+const MapComponent = ({ latitude, longitude, mapboxToken }) => {
+  const mapContainer = useRef(null);
+  const map = useRef(null);
 
-var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
+  useEffect(() => {
+    if (map.current) return; // initialize map only once
+    mapboxgl.accessToken = mapboxToken;
+    map.current = new mapboxgl.Map({
+      container: mapContainer.current,
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [longitude || -74.5, latitude || 40],
+      zoom: 12
+    });
 
-mapboxgl.accessToken = 'sk.eyJ1IjoiYWtpbjEyMyIsImEiOiJjbHp0am05Z2wyNm1hMnJzOG12djU0NmEzIn0.I61eXc2ZLdTpFM2X2JVPIw';
-var map = new mapboxgl.Map({
-  container: 'YOUR_CONTAINER_ELEMENT_ID',
-  style: 'mapbox://styles/mapbox/streets-v11'
-});
+    // Add navigation control (zoom buttons)
+    map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
+
+    // Add marker
+    new mapboxgl.Marker()
+      .setLngLat([longitude || -74.5, latitude || 40])
+      .addTo(map.current);
+  }, [latitude, longitude, mapboxToken]);
+
+  useEffect(() => {
+    if (!map.current) return; // wait for map to initialize
+    map.current.flyTo({
+      center: [longitude, latitude],
+      zoom: 12
+    });
+  }, [latitude, longitude]);
+
+  return (
+    <div>
+      <div ref={mapContainer} style={{ width: '100%', height: '400px' }} />
+    </div>
+  );
+};
+
+export default MapComponent;

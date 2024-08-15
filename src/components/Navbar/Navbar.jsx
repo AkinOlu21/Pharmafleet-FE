@@ -23,9 +23,10 @@ const Navbar = ({setShowLogin}) => {
     <div className='navbar' >
    <Link to={'/'}><img src={assets.Pharmafleet_logo} alt="" className="logo" /></Link> 
     <ul className="nav-menu">
-        <Link to={'/'} onClick={()=> setMenu("home")} className={menu=== "home"?"active": ""}>Home</Link>
+        <Link to={'/'} onClick={()=> setMenu("home")} className={menu=== "home"?"active": "" }>Home</Link>
         <a href='#explore-products' onClick={()=> setMenu("products")} className={menu=== "products"?"active": ""}>Products</a>
         <a href='#app-download' onClick={()=> setMenu("mobile app")} className={menu=== "mobile app"?"active": ""}>Mobile App</a>
+        <Link to={'/prescription'} onClick={()=> setMenu("prescription")} className={menu=== "prescription"?"active": "" }>Prescription</Link>
         <a  href='#footer' onClick={()=> setMenu("contact us")} className={menu=== "contact us"?"active": ""}>Contact us</a>
     </ul>
 

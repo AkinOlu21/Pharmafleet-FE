@@ -70,6 +70,7 @@ const PlaceOrder = () => {
       address: data,
       items: orderItems,
       amount: getTotalCartAmount() + 2.5,
+      coordinates: coordinates
     };
 
     try {

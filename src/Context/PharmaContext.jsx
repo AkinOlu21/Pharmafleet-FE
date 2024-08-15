@@ -42,7 +42,14 @@ const PharmaContextProvider = (props) => {
             if (cartItems[item]>0){
 
                 let itemInfo = product_type.find((product)=>product._id === item);
+                //totalAmount += itemInfo.price * cartItems[item];
+                
+                 // Ensure itemInfo is defined and has a price property
+            if (itemInfo && itemInfo.price) {
                 totalAmount += itemInfo.price * cartItems[item];
+            } else {
+                console.warn(`Product with ID ${item} not found or has no price.`);
+            }
 
             }
         }
@@ -88,7 +95,8 @@ const contextValue ={ //variable
     getTotalCartAmount,
     token,
     setToken,
-    url
+    url,
+    
 }
 
 return (

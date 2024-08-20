@@ -2,12 +2,13 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { PharmaContext } from '../../Context/PharmaContext';
 import MapComponent from '../../components/Map/Map';
-
+import './DriverPage.css';
 const MAPBOX_TOKEN = 'pk.eyJ1IjoiYWtpbjEyMyIsImEiOiJjbHp0cjN0cGUyOXBhMmpxd2Y2cWlkaDJ0In0.R__WzzC1T6RqiGGD7a6fSw';
 
 const DriverDashboard = () => {
   const { token, url } = useContext(PharmaContext);
   const [orders, setOrders] = useState([]);
+  const [prescriptions, setPrescriptions] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -19,6 +20,7 @@ const DriverDashboard = () => {
     setError(null);
     try {
       const response = await axios.get(`${url}/api/driver/orders`, {headers: {token} });
+      
       if (response.data.success) {
         setOrders(response.data.data); // Assuming the API returns { success: true, data: [...] }
         console.log(response.data.data);
@@ -33,14 +35,39 @@ const DriverDashboard = () => {
     }
   };
 
+  const fetchPrescriptions = async () =>{
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await axios.get(`${url}/api/driver/prescriptionorders`,{headers: {token}});
+      if (response.data.success) {
+        setPrescriptions(response.data.data);
+        console.log(response.data.data);
+      }
+      else {
+        console.log("Prescriptions not available");
+        setError(response.data.message || 'Failed to fetch prescriptions');
+      }
+    } catch (error) {
+      
+      console.error('Error fetching orders:', error);
+      setError('An error occurred while fetching the prescription orders. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  }
+
   useEffect(() => {
     fetchOrders();
+    fetchPrescriptions();
   }, [token, url]);
 
-  const handleOrderSelect = (order) => {
-    setSelectedOrder(order);
+  const handleOrderSelect = (order,prescription) => {
+    setSelectedOrder(order,prescription);
     setShowDirections(false);
   };
+
+  
 
   const handleStartNavigation = () => {
     // Implement logic to start navigation
@@ -80,6 +107,23 @@ const DriverDashboard = () => {
           ))
         )}
       </div>
+      {prescriptions.length === 0 ? (
+        <p>No pending prescription orders at the moment.</p>
+      ) : (
+        <div className="prescription-list">
+          {prescriptions.map((prescription) => (
+            <div key={prescription._id} className="prescription-item" onClick={() => handleOrderSelect(prescription)}>
+              <p>Prescription ID: {prescription._id}</p>
+              <p>Customer: {prescription.firstName} {prescription.lastName} </p>
+              <p>Medication: {prescription.medication}</p>
+              <p>Collection Type: {prescription.collectionType}</p>
+              <p>Address: {prescription.address.address} {prescription.address.city} {prescription.address.postcode} </p>
+
+            </div>
+          ))}
+        </div>
+      )}
+
       {selectedOrder && (
         <div className="order-details">
           <h2>Selected Order</h2>

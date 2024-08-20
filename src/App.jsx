@@ -13,7 +13,7 @@ import ProtectedRoute from './components/ProtectedRoutes/ProtectedRoutes'
 import DoctorPage from './Pages/Doctor/DoctorPage'
 import DriverPage from './Pages/Driver/DriverPage'
 import Prescription from './Pages/Prescription/Prescription'
-
+import PrescriptionSuccess from './components/PrescriptionSuccess/PrescriptionSuccess'
 const App = () => {
 
 const [showLogin,setShowLogin] = useState(false)
@@ -40,6 +40,7 @@ const [showLogin,setShowLogin] = useState(false)
         
         <Route element={<ProtectedRoute allowedRoles={['Customer']} />}>
         <Route  path='/prescription' element={<Prescription/>} />
+        <Route path='/prescriptionsuccess' element={<PrescriptionSuccess/>} />
         </Route>
 
         

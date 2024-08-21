@@ -1,6 +1,6 @@
 .Header{
     
-    background: url('/public/header.webp') no-repeat;
+    background: url('/header.webp') no-repeat;
     height: 34vw;
     margin: 30px auto;
     background-size: contain;

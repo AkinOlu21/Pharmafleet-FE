@@ -14,6 +14,7 @@ import DoctorPage from './Pages/Doctor/DoctorPage'
 import DriverPage from './Pages/Driver/DriverPage'
 import Prescription from './Pages/Prescription/Prescription'
 import PrescriptionSuccess from './components/PrescriptionSuccess/PrescriptionSuccess'
+import MyPrescriptionOrders from './Pages/MyPrescriptionOrders/MyPrescriptionOrders'
 const App = () => {
 
 const [showLogin,setShowLogin] = useState(false)
@@ -29,6 +30,7 @@ const [showLogin,setShowLogin] = useState(false)
         <Route path='/order' element={<PlaceOrder/>} />
         <Route path='/verify' element={<Verify/>} />
         <Route path='/myorders' element={<MyOrders/>}/>
+        <Route path='/myprescriptionorders' element={<MyPrescriptionOrders/>} />
 
         <Route element={<ProtectedRoute allowedRoles={['GP']} />}>
         <Route  path='/doctor' element={<DoctorPage/>} />

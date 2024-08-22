@@ -85,9 +85,11 @@ const onChangeHandler = (event) =>{
 
                 <input name='email'onChange={onChangeHandler} value={data.email} type="email" placeholder='Your Email' required /> 
                 <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder='Your Password' required />     
+               
                 {currState==='Sign Up' && (
                     <select name='role' onChange={onChangeHandler} value={data.role} required>
-                        <option value="customer">Customer</option>
+                        <option value="">Select</option>
+                        <option value="Customer">Customer</option>
                         <option value="GP">GP</option>
                         <option value="Driver">Driver</option>
                     Who are you?</select>

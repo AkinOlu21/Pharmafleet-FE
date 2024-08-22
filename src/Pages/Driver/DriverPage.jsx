@@ -13,7 +13,7 @@ const DriverDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showDirections, setShowDirections] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);  
+  
 
 
   const fetchOrders = async () => {
@@ -78,20 +78,43 @@ const DriverDashboard = () => {
   };
 
   const handleEndNavigation = () => { 
-    setShowPopup(true);
-   }
+    setShowDirections(false);
+    
+  }
+ 
 
 
-   const handlePopupClose = (delivered) => {
-    setShowPopup(false);
-    if(delivered){
-      //remove the order from the list
-      setOrders(orders.filter(order => order._id !== selectedOrder._id));
-      setPrescriptions(prescriptions.filter(prescription => prescription._id !== selectedOrder._id));
-      setSelectedOrder(null);
-   }
+  const statusHandler = async (event, prescriptionId) => {
+    try {
+      const response = await axios.post(`${url}/api/order/prescriptionstatus`, {
+        prescriptionId,
+        status: event.target.value
+      });
+      if (response.data.success) {
+        await fetchPrescriptions();
+      }
+    } catch (error) {
+      console.error("Error updating prescription status:", error);
+    }
   };
 
+  const OrderstatusHandler = async (event, orderId) => {
+    try {
+      const response = await axios.post(`${url}/api/order/status`, {
+        orderId,
+        status: event.target.value
+      });
+      if (response.data.success) {
+        await fetchOrders();
+      }
+    } catch (error) {
+      console.error("Error updating order status:", error);
+      toast.error("An error occurred while updating the order status.");
+    }
+  };
+
+
+   
   if (loading) {
     return <div>Loading orders...</div>;
   }
@@ -119,9 +142,19 @@ const DriverDashboard = () => {
                 </p>;
               })}
               <p>Order Items: {order.items.name} {order.items.category} {order.items.price} </p>
+
+              <div className='prescription-select' >
+                <h4>Is the order delivered?</h4>
+              <select onChange={(event)=> OrderstatusHandler(event,order._id)} value={order.status} >
+                 <option value="">Select</option>
+                  <option value="Delivered">Order Delivered</option>
+            </select>
+                 </div> 
+              
             </div>
           ))
         )}
+        
       </div>
       {prescriptions.length === 0 ? (
         <p>No pending prescription orders at the moment.</p>
@@ -135,8 +168,18 @@ const DriverDashboard = () => {
               <p>Collection Type: {prescription.collectionType}</p>
               <p>Address: {prescription.address.address} {prescription.address.city} {prescription.address.postcode} </p>
 
+              <div className='prescription-select' >
+                <h4>Is the order delivered?</h4>
+              <select onChange={(event)=> statusHandler(event,prescription._id)} value={prescription.status} >
+                 <option value="">Select</option>
+                  <option value="Delivered">Order Delivered</option>
+            </select>
+                 </div> 
+              
+
             </div>
           ))}
+          
         </div>
       )}
 
@@ -160,19 +203,14 @@ const DriverDashboard = () => {
             <button onClick={handleStartNavigation}>
               Start Navigation
             </button>
-          ) : (
-          <button onClick={handleEndNavigation}>
-            End Navigation </button>
+          ) :(
+            <button onClick={handleEndNavigation}> End Navigation</button>
           )}
         </div>
       )}
-      {showPopup && (
-        <div className="popup">
-          <h3>Has the Order been delivered</h3>
-          <button onClick={() =>handlePopupClose(true)} > Yes </button>
-          <button onClick={() => handlePopupClose(false)}> No </button>
-        </div>
-      )}
+
+          
+  
     </div>
   );
 };

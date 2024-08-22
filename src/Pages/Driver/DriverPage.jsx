@@ -13,6 +13,7 @@ const DriverDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showDirections, setShowDirections] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);  
 
 
   const fetchOrders = async () => {
@@ -74,6 +75,21 @@ const DriverDashboard = () => {
     console.log('Starting navigation for order:', selectedOrder._id);
     setShowDirections(true);
     // You could open a maps application here or integrate with a navigation API
+  };
+
+  const handleEndNavigation = () => { 
+    setShowPopup(true);
+   }
+
+
+   const handlePopupClose = (delivered) => {
+    setShowPopup(false);
+    if(delivered){
+      //remove the order from the list
+      setOrders(orders.filter(order => order._id !== selectedOrder._id));
+      setPrescriptions(prescriptions.filter(prescription => prescription._id !== selectedOrder._id));
+      setSelectedOrder(null);
+   }
   };
 
   if (loading) {
@@ -140,12 +156,21 @@ const DriverDashboard = () => {
           ) : (
             <p>No map coordinates available for this order.</p>
           )}
-          {!showDirections && (
+          {!showDirections ? (
             <button onClick={handleStartNavigation}>
               Start Navigation
             </button>
+          ) : (
+          <button onClick={handleEndNavigation}>
+            End Navigation </button>
           )}
-          
+        </div>
+      )}
+      {showPopup && (
+        <div className="popup">
+          <h3>Has the Order been delivered</h3>
+          <button onClick={() =>handlePopupClose(true)} > Yes </button>
+          <button onClick={() => handlePopupClose(false)}> No </button>
         </div>
       )}
     </div>

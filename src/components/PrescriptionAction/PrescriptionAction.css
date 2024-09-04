@@ -9,14 +9,14 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    font-weight: 500;
-    background-color: rgb(26, 213, 26);
-    color: black;
+    font-weight: 400;
+    background-color: rgb(37, 233, 109);
+    color: white;
 }
 
 .action-buttons button:hover{
-    background-color: rgb(26, 213, 26);
-    color: white;
+    background-color: rgb(130, 236, 169);
+    color: black;
 }
 
 .accept-form{
@@ -28,14 +28,14 @@
 
 .accept-form input{
     padding: 10px;
-    border: 1px solid rgb(26, 213, 26);
+    border: 1px solid rgb(37, 233, 109);
     border-radius: 5px;
     font-size: 16px;
 }
 
 .accept-form textarea{
     padding: 10px;
-    border: 1px solid rgb(26, 213, 26);
+    border: 1px solid rgb(37, 233, 109);
     border-radius: 5px;
     font-size: 16px;
 }
@@ -47,11 +47,41 @@
     cursor: pointer;
     font-size: 16px;
     font-weight: 500;
-    background-color: rgb(26, 213, 26);
-    color: black;
+    background-color: rgb(37, 233, 109);
+    color: white;
 }
 
 .accept-form button:hover{
-    background-color: rgb(26, 213, 26);
+    background-color: rgb(130, 236, 169);
+    color: black;
+}
+
+.reject-form{
+    display: grid;
+    gap: 15px;
+    margin-top: 50px;
+    
+}
+
+.reject-form textarea{
+    padding: 10px;
+    border: 1px solid rgb(37, 233, 109);
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.reject-form button{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: rgb(37, 233, 109);
     color: white;
+}
+
+.reject-form button:hover{
+    background-color: rgb(130, 236, 169);
+    color: black;
 }

@@ -1,4 +1,4 @@
-/* GPInterface.css */
+
 
 .gp-interface {
     max-width: 1200px;
@@ -6,17 +6,21 @@
     padding: 2rem;
     font-family: Arial, sans-serif;
   }
-  
+
+
   .gp-interface h1 {
-    color: #333;
+    color: #33962a;
     text-align: center;
     margin-bottom: 2rem;
+    font-size:xx-large;
+    font-weight: 700;
   }
   
   .prescriptions-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
+    
   }
   
   .prescription-item {
@@ -32,7 +36,7 @@
   }
   
   .prescription-item h3 {
-    color: #2c3e50;
+    color: #40cf33;
     margin-bottom: 1rem;
     font-size: 1.2rem;
   }
@@ -40,6 +44,7 @@
   .prescription-item p {
     margin: 0.5rem 0;
     color: #34495e;
+    font-weight: 500;
   }
   
   .address-section {
@@ -49,7 +54,7 @@
   }
   
   .address-section h4 {
-    color: #2c3e50;
+    color: #40cf33;
     margin-bottom: 0.5rem;
   }
   

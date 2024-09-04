@@ -8,7 +8,7 @@
   }
   
   .driver-dashboard h1 {
-    color: #333;
+    color: #33962a;
     font-size: 2.5rem;
     margin-bottom: 2rem;
     text-align: center;
@@ -23,11 +23,20 @@
   }
   
   .order-list h2, .prescription-list h2 {
-    color: #495057;
+    color: #33962a;
     font-size: 1.8rem;
     margin-bottom: 1rem;
   }
+
+  .order-list  p{
+    font-weight: 500;
+  }
   
+  .order-select h4{
+    font-weight: 800;
+    color: #19b731;
+  }
+
   .order-item, .prescription-item {
     background-color: #fff;
     border-radius: 6px;
@@ -57,7 +66,7 @@
   }
   
   .order-details h2 {
-    color: #495057;
+    color: #33962a;
     font-size: 1.8rem;
     margin-bottom: 1rem;
   }
@@ -66,9 +75,10 @@
     margin: 0.5rem 0;
     color: #495057;
   }
+
   
   button {
-    background-color: #007bff;
+    background-color: #40cf33;
     color: #fff;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -80,9 +90,26 @@
   }
   
   button:hover {
-    background-color: #0056b3;
+    background-color: rgb(130, 236, 169);
+    color: black;
   }
   
+  .prescription-item select{
+    padding: 0.5rem;
+    border: 1px solid #2dda41;
+    border-radius: 50px;
+    font-size: 1rem;
+    margin-top: 1rem;
+
+  }
+  
+  .order-item select{
+    padding: 0.5rem;
+    border: 1px solid #2dda41;
+    border-radius: 50px;
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
   .loading, .error {
     text-align: center;
     font-size: 1.2rem;
@@ -113,29 +140,4 @@
   }
 
 
-  .popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 20px;
-    z-index: 1000;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  }
-  
-  .popup h3 {
-    margin-top: 0;
-  }
-  
-  .popup button {
-    margin: 5px;
-    padding: 10px 15px;
-    cursor: pointer;
-  }
-  
-  .popup button:hover {
-    background-color: #f0f0f0;
-  }
   

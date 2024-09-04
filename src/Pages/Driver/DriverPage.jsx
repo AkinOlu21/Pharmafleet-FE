@@ -134,16 +134,15 @@ const DriverDashboard = () => {
           orders.map((order) => (
             <div key={order._id} className="order-item" onClick={() => handleOrderSelect(order)}>
               <p>Order ID: {order._id}</p>
-              <p>Address: {order.address.address}, {order.address.city}, {order.address.country}, {order.address.postcode}</p>
-              <p>Customer: {order.address.firstName} {order.address.lastName} {order.address.phone}</p>
-              {order.items.map((item,index) => {
-                return <p key={index}>Order Items: {item.name} 
-                <p key={index}>Order Price: {item.price}</p>
-                </p>;
-              })}
-              <p>Order Items: {order.items.name} {order.items.category} {order.items.price} </p>
+              <p>Address: {order.address.address}</p>
+              <p>City: {order.address.city} </p>
+              <p>Country: {order.address.country} </p>
+              <p>Postcode: {order.address.postcode}</p>
+              <p>Customer: {order.address.firstName} {order.address.lastName}</p>
+              <p>Customer Mobile Number: {order.address.phone}</p>
+                           
 
-              <div className='prescription-select' >
+              <div className='order-select' >
                 <h4>Is the order delivered?</h4>
               <select onChange={(event)=> OrderstatusHandler(event,order._id)} value={order.status} >
                  <option value="">Select</option>

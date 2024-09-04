@@ -17,7 +17,8 @@ const LoginPopup = ({setShowLogin}) => {
         name:"",
         email:"",
         password:"",
-        role:"customer"
+        role:"customer",
+        licenseNumber:""
     })
 
 const onChangeHandler = (event) =>{
@@ -87,12 +88,22 @@ const onChangeHandler = (event) =>{
                 <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder='Your Password' required />     
                
                 {currState==='Sign Up' && (
+                    <>
+                    Please Select why you are signing up!
                     <select name='role' onChange={onChangeHandler} value={data.role} required>
                         <option value="">Select</option>
                         <option value="Customer">Customer</option>
                         <option value="GP">GP</option>
                         <option value="Driver">Driver</option>
-                    Who are you?</select>
+                    
+                    </select>
+                    {data.role=== "GP" && (
+                        <div> 
+                            Must begin with LN
+                            <input name='licenseNumber' onChange={onChangeHandler} value={data.licenseNumber} type="text" placeholder='License Number e.g "LN123" ' required />  
+                        </div>
+                    ) }
+                    </>
                 )}  
                 </div>
                 <button type='submit' >{currState==="Sign Up"?"Create account":"Login"}</button>

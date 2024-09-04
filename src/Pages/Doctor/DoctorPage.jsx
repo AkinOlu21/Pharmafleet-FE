@@ -52,7 +52,7 @@ const DoctorPage = () => {
       <h1>GP Prescriptions Dashboard</h1>
       <div className="prescriptions-list">
         {prescriptions.length === 0 ? (
-          <p>No prescriptions found.</p>
+          <p>No Prescription Available.</p>
         ) : (
           prescriptions.map(prescription => (
             <div key={prescription._id} className="prescription-item">

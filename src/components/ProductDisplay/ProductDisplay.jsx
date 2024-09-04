@@ -10,7 +10,7 @@ const {product_type} = useContext(PharmaContext)
   return (
     <div className='prod-display' id='prod-display'>
 
-        <h2>Produts near you</h2>
+        <h2>PRODUCTS FOR YOU </h2>
         <div className="prod-display-list">
             {product_type.map((item,index)=>{
               if (category==="All" || category===item.category) {

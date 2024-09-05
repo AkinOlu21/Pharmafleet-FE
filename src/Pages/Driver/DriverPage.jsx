@@ -71,10 +71,8 @@ const DriverDashboard = () => {
   
 
   const handleStartNavigation = () => {
-    // Implement logic to start navigation
     console.log('Starting navigation for order:', selectedOrder._id);
     setShowDirections(true);
-    // You could open a maps application here or integrate with a navigation API
   };
 
   const handleEndNavigation = () => { 

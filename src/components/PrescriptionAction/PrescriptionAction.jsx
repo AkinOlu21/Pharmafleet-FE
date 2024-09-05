@@ -22,9 +22,8 @@ const PrescriptionAction = ({ prescription, onActionComplete }) => {
     setError(null);
     try {
       const apiUrl = import.meta.env.VITE_API_URL;
-      console.log('API URL:', apiUrl); // Log the API URL
       const url = `${apiUrl}/api/prescription/${prescription._id}/${action}`;
-      console.log('Full request URL:', url); // Log the full URL
+      
 
       const data = action === 'accept' ? { Note: note, Dosage: dosage } : { Note: note };
       const response = await axios.patch(url, data, {
@@ -53,46 +52,7 @@ const PrescriptionAction = ({ prescription, onActionComplete }) => {
 
 
 
-  /*const handleSubmit = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      console.log('Token:', token); // Log the token
-      console.log('API URL:', url);
-      const fullUrl = `${url}/api/prescription/${prescription._id}/${action}`;
-      console.log('Full request URL:', fullUrl);
-
-      const data = action === 'accept' ? { Note: note, Dosage: dosage } : { Note: note };
-      const response = await axios.patch(fullUrl, data, {
-        headers: { 
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      console.log('Response:', response.data);
-
-      if (response.data.success) {
-        onActionComplete(response.data.prescription);
-      } else {
-        setError(response.data.message || 'Operation failed. Please try again.');
-      }
-    } catch (err) {
-      console.error('Error in prescription action:', err);
-      if (err.response) {
-        console.log('Error response:', err.response.data);
-        setError(err.response.data?.message || `Server error: ${err.response.status}`);
-      } else if (err.request) {
-        setError('No response received from server. Please check your connection.');
-      } else {
-        setError(`Error: ${err.message}`);
-      }
-    } finally {
-      setLoading(false);
-    }
-  };*/
-
-
+  
 
 
 

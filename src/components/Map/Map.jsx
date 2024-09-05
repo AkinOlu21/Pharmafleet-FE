@@ -11,7 +11,7 @@ const MapComponent = ({ latitude, longitude, mapboxToken, showDirections }) => {
   const [userLocation, setUserLocation] = useState(null);
 
   useEffect(() => {
-    if (map.current) return; // initialize map only once
+    if (map.current) return; // initializing the map only once
     mapboxgl.accessToken = mapboxToken;
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
@@ -20,15 +20,15 @@ const MapComponent = ({ latitude, longitude, mapboxToken, showDirections }) => {
       zoom: 12
     });
 
-    // Add navigation control (zoom buttons)
+    // Adding navigation control for zomming
     map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
-    // Add marker for delivery location
+    // Adding marker for the delivery location
     new mapboxgl.Marker()
       .setLngLat([longitude || -74.5, latitude || 40])
       .addTo(map.current);
 
-    // Get user's current location
+    // Getting the users current location
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { longitude, latitude } = position.coords;
@@ -46,7 +46,7 @@ const MapComponent = ({ latitude, longitude, mapboxToken, showDirections }) => {
 
     if (showDirections && userLocation) {
       if (!directionsControl.current) {
-        // Create directions control if it doesn't exist
+        // Create a directions control if it doesn't exist
         directionsControl.current = new MapboxDirections({
           accessToken: mapboxToken,
           unit: 'metric',
@@ -55,11 +55,11 @@ const MapComponent = ({ latitude, longitude, mapboxToken, showDirections }) => {
         map.current.addControl(directionsControl.current, 'top-left');
       }
 
-      // Set origin and destination
+      // Setting the origin and destination
       directionsControl.current.setOrigin(userLocation);
       directionsControl.current.setDestination([longitude, latitude]);
     } else {
-      // Remove directions control if it exists
+      // Remove the directions control if it already exists
       if (directionsControl.current) {
         map.current.removeControl(directionsControl.current);
         directionsControl.current = null;
@@ -68,7 +68,7 @@ const MapComponent = ({ latitude, longitude, mapboxToken, showDirections }) => {
   }, [showDirections, userLocation, latitude, longitude, mapboxToken]);
 
   useEffect(() => {
-    if (!map.current) return; // wait for map to initialize
+    if (!map.current) return; // wait for the map to initialize
     map.current.flyTo({
       center: [longitude, latitude],
       zoom: 12
